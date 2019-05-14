@@ -73,7 +73,7 @@
                                     '<a href="update_task.php?task_id=' . $fetch['idTask'] . '" class="btn btn-success"><span class="glyphicon glyphicon-check"></span></a> |';
                             }
                             ?>
-                            <a href="delete_query.php?task_id=<?php echo $fetch['idTask'] ?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a href="ToTrash.php?task_id=<?php echo $fetch['idTask'] ?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                             <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample<?php echo $count-1?>" role="button" aria-expanded="false" aria-controls="collapseExample">
                                 Details
                             </a>
