@@ -1,4 +1,5 @@
 <?php
+
 require "includes/dbh.inc.php";
 
 if ($_GET['task_id'] != "") {
@@ -9,3 +10,5 @@ if ($_GET['task_id'] != "") {
 	header("location: ../todolist-master/index.php");
 }
 ?>
+
+

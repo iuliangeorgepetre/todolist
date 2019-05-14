@@ -34,6 +34,7 @@ require "includes/dbh.inc.php";
         <li><a href="#">About me</a></li>
         <li><a href="#">Contact</a></li>
         <li><a href="trash.php">Trash</a></li>
+
       </ul>
     </nav>
     <div class="header-login">
