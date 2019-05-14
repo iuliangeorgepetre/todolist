@@ -1,10 +1,8 @@
 <?php
 include "header.php";
 require "includes/dbh.inc.php";
-$uid = $_SESSION['id'];
-$query = $conn->query("SELECT * FROM 'user_task_leg' WHERE idUsers = $uid");
 
-
+$query = $conn->query("SELECT * FROM `tasks` WHERE status = 'inTrash' ");
 
 
 if (!$query->fetch_array()) {
@@ -19,7 +17,6 @@ if (!$query->fetch_array()) {
         }
     }
     $result = mysqli_query($conn, "SELECT * FROM tasks");
-    
     ?>
     <br>
     <div class="col-md-3"></div>
