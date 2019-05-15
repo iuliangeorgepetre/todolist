@@ -51,7 +51,7 @@
         <br /><br /><br />
         <table class="table table-hover">
             <thead class="text-center">
-                <tr>
+                <tr class="text-center">
                     <th scope="col">#</th>
                     <th scope="col">Task</th>
                     <th scope="col">Deadline</th>
@@ -71,15 +71,14 @@
                 while ($iadate = $interogare->fetch_array()) {
                     $idTask = $iadate['idTask'];
 
-                    $query = $conn->query("SELECT * FROM `tasks` WHERE idTask = $idTask ");
+                    $query = $conn->query("SELECT * FROM `tasks` WHERE idTask = $idTask AND status !='inTrash'");
 
 
 
                     while ($fetch = $query->fetch_array()) {
                         # if($fetch[])
                         ?>
-                        <tr>
-                            <th scope="row"></th>
+                        <tr class="text-center">
                             <td><?php echo $count++ ?></td>
                             <td><?php echo $fetch['name'] ?></td>
                             <td><?php echo $fetch['deadline'] ?></td>
