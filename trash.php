@@ -59,7 +59,7 @@ if (!$query->fetch_array()) {
                         while ($iadate = $interogare->fetch_array()) {
                             $idTask = $iadate['idTask'];
 
-                            $query = $conn->query("SELECT * FROM `tasks` WHERE idTask = $idTask ");
+                            $query = $conn->query("SELECT * FROM `tasks` WHERE idTask = $idTask AND status = 'inTrash'");
 
 
 

@@ -23,7 +23,7 @@ require "includes/dbh.inc.php";
 <body>
 
   <!-- Aici este headerul unde am decis sa includ formularul de login. -->
-  <header>
+  <header class="d-flex">
     <nav class="nav-header-main">
       <a class="header-logo" href="index.php">
         <img src="img/logo.png" alt="mmtuts logo">
