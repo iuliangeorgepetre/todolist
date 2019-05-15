@@ -30,10 +30,16 @@ require "includes/dbh.inc.php";
       </a>
       <ul>
         <li><a href="index.php">Home</a></li>
-        <li><a href="proiecte.php">Proiecte</a></li>
+        
         <li><a href="#">About me</a></li>
         <li><a href="#">Contact</a></li>
-        <li><a href="trash.php">Trash</a></li>
+        <?php 
+          if(isset($_SESSION['id'])){
+            echo '<li><a href="proiecte.php">Proiecte</a></li>';
+            echo '<li><a href="trash.php">Trash</a></li>';
+          }
+        ?>
+        
 
       </ul>
     </nav>
