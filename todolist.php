@@ -1,3 +1,4 @@
+
 <head>
 
 
@@ -93,12 +94,39 @@
                 </div>
             </form>
 
-            <!-- modal test -->
+            <!-- Modal Edit -->
+ 
+            <form method="POST" class="form" action="edit_task.php">
 
-
-
-            <!-- end test -->
-
+                <div class="modal" id="myModalEdit">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Edit Task</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <label for="task">Edit Task</label>
+                                <input type="text" class="form-control" name="task" required>
+                                <br>
+                                <label for="deadline">Edit Deadline</label>
+                                <input type="date" class="form-control" name="deadline" required>
+                                <br>
+                                <input type="text" class="form-control" name="bookId" value="">
+                                <button class="btn btn-primary form-control" name="edit">EditTask</button>
+                                <br><br>
+                             
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
 
         </div>
         <br /><br /><br />
@@ -129,9 +157,6 @@
 
                     $query = $conn->query("SELECT * FROM `tasks` WHERE idTask = $idTask AND status !='inTrash' AND parent_ID = '0'");
 
-
-
-
                     while ($fetch = $query->fetch_array()) {
                         # if($fetch[])
                         ?>
@@ -155,7 +180,9 @@
                                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalSubtask" data-book-id="<?php echo $fetch['idTask'] ?> ">
                                     <span class="glyphicon glyphicon-plus-sign"></span>
 
-                                </button>
+                              </button><span>|</span>
+                                 <button type-="button" class="btn btn-info"data-toggle="modal" data-target="#myModalEdit" data-book-id="<?php echo $fetch['idTask'] ?> "><span class="glyphicon glyphicon-edit"></span></button>
+                                
                             </td>
                             <td>
                                 <div class="collapse" id="collapseExample<?php echo $count - 1 ?>">
@@ -224,14 +251,19 @@
     $('.collapse').collapse({
         toggle: false
     });
-
     $('#myModalSubtask').on('show.bs.modal', function(e) {
-
+        //get data-id attribute of the clicked element
+        var bookId = $(e.relatedTarget).data('book-id');
+        //populate the textbox
+        $(e.currentTarget).find('input[name="bookId"]').val(bookId);
+    });
+    $('#myModalEdit').on('show.bs.modal', function(e) {
         //get data-id attribute of the clicked element
         var bookId = $(e.relatedTarget).data('book-id');
 
         //populate the textbox
         $(e.currentTarget).find('input[name="bookId"]').val(bookId);
     });
+
 
 </script>
