@@ -1,6 +1,8 @@
 <head>
 
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 
 
 
@@ -14,6 +16,7 @@
         <hr style="border-top:1px dotted #ccc;" />
         <div class="col-md-2"></div>
         <div class="col-md-8 center">
+
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                 Add Task
             </button>
@@ -21,6 +24,7 @@
 
             <!-- The Modal Task -->
             <form method="POST" class="form" action="add_query.php">
+
                 <div class="modal" id="myModal">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -39,7 +43,9 @@
                                 <br>
                                 <label for="deadline">Deadline</label>
                                 <input type="date" class="form-control" name="deadline" required>
+
                                 <input type="text" class="form-control" name="bookId" value="0">
+
                                 <br>
                                 <button class="btn btn-primary form-control" name="add">Add Task</button>
                                 <br><br>
@@ -52,6 +58,7 @@
                     </div>
                 </div>
             </form>
+
             <!-- The Modal Subtask -->
             <form method="POST" class="form" action="add_query.php">
                 <div class="modal" id="myModalSubtask">
@@ -92,6 +99,7 @@
 
             <!-- end test -->
 
+
         </div>
         <br /><br /><br />
         <table class="table table-hover">
@@ -107,7 +115,9 @@
             <tbody class="text-center">
                 <?php
                 require "includes/dbh.inc.php";
+
                 $are=0;
+
                 $id = $_SESSION['id'];
 
                 $interogare = $conn->query("SELECT * FROM `user_task_leg` WHERE idUsers = $id ");
@@ -116,7 +126,9 @@
                 while ($iadate = $interogare->fetch_array()) {
                     $idTask = $iadate['idTask'];
 
+
                     $query = $conn->query("SELECT * FROM `tasks` WHERE idTask = $idTask AND status !='inTrash' AND parent_ID = '0'");
+
 
 
 
@@ -136,11 +148,13 @@
                                 }
                                 ?>
                                 <a href="ToTrash.php?task_id=<?php echo $fetch['idTask'] ?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a><span>|</span>
+
                                 <button class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample<?php echo $count - 1 ?>" role="button" aria-expanded="false" aria-controls="collapseExample">
                                     <span class="glyphicon glyphicon-question-sign"></span>
                                 </button><span>|</span>
                                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalSubtask" data-book-id="<?php echo $fetch['idTask'] ?> ">
                                     <span class="glyphicon glyphicon-plus-sign"></span>
+
                                 </button>
                             </td>
                             <td>
@@ -151,6 +165,7 @@
                                 </div>
                             </td>
                         </tr>
+
                         <?php
                             $query = $conn->query("SELECT * FROM `tasks` WHERE parent_ID = $idTask");
                             if($fetch = $query->fetch_array()){
@@ -187,6 +202,7 @@
                          echo "</div>";
                         
                          
+
                 }
             }
             ?>
@@ -204,6 +220,7 @@
     }
 </script>
 <script>
+
     $('.collapse').collapse({
         toggle: false
     });
@@ -216,4 +233,5 @@
         //populate the textbox
         $(e.currentTarget).find('input[name="bookId"]').val(bookId);
     });
+
 </script>
