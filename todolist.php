@@ -2,9 +2,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
 </head>
-
 <body>
     <div class="col-md-3"></div>
     <div class="col-md-6 well">
@@ -14,7 +15,9 @@
         <div class="col-md-8 center">
             <form method="POST" class="form" action="add_query.php">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+
                     Add Task
+
                 </button>
                 <!-- The Modal -->
                 <div class="modal" id="myModal">
@@ -51,7 +54,9 @@
         <br /><br /><br />
         <table class="table table-hover">
             <thead class="text-center">
-                <tr class="text-center">
+
+                <tr>
+
                     <th scope="col">#</th>
                     <th scope="col">Task</th>
                     <th scope="col">Deadline</th>
@@ -66,6 +71,7 @@
                 $id = $_SESSION['id'];
 
                 $interogare = $conn->query("SELECT * FROM `user_task_leg` WHERE idUsers = $id ");
+
 
                 $count = 1;
                 while ($iadate = $interogare->fetch_array()) {
@@ -104,14 +110,16 @@
                             </td>
                         </tr>
                     <?php
+
                 }
-            }
-            ?>
+                }
+                ?>
             </tbody>
         </table>
     </div>
 </body>
 <script>
+
     // When the user clicks on <div>, open the popup
     $('#myModal').modal(options);
 
