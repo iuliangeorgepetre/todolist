@@ -23,17 +23,24 @@ require "includes/dbh.inc.php";
 <body>
 
   <!-- Aici este headerul unde am decis sa includ formularul de login. -->
-  <header>
+  <header class="d-flex">
     <nav class="nav-header-main">
       <a class="header-logo" href="index.php">
         <img src="img/logo.png" alt="mmtuts logo">
       </a>
       <ul>
         <li><a href="index.php">Home</a></li>
-        <li><a href="proiecte.php">Proiecte</a></li>
+        
         <li><a href="#">About me</a></li>
         <li><a href="#">Contact</a></li>
-        <li><a href="ToTrash.php">Trash</a></li>
+        <?php 
+          if(isset($_SESSION['id'])){
+            echo '<li><a href="proiecte.php">Proiecte</a></li>';
+            echo '<li><a href="trash.php">Trash</a></li>';
+          }
+        ?>
+        
+
       </ul>
     </nav>
     <div class="header-login">

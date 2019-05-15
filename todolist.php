@@ -1,4 +1,5 @@
-<head><head>
+
+<head>
 
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -127,11 +128,6 @@
                 </div>
             </form>
 
-
-
-            <!-- end test -->
-
-
         </div>
         <br /><br /><br />
         <table class="table table-hover">
@@ -147,13 +143,20 @@
             <tbody class="text-center">
                 <?php
                 require "includes/dbh.inc.php";
+
                 $are=0;
+
                 $id = $_SESSION['id'];
+
                 $interogare = $conn->query("SELECT * FROM `user_task_leg` WHERE idUsers = $id ");
+
                 $count = 1;
                 while ($iadate = $interogare->fetch_array()) {
                     $idTask = $iadate['idTask'];
+
+
                     $query = $conn->query("SELECT * FROM `tasks` WHERE idTask = $idTask AND status !='inTrash' AND parent_ID = '0'");
+
                     while ($fetch = $query->fetch_array()) {
                         # if($fetch[])
                         ?>
@@ -177,8 +180,9 @@
                                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalSubtask" data-book-id="<?php echo $fetch['idTask'] ?> ">
                                     <span class="glyphicon glyphicon-plus-sign"></span>
 
-                                </button><span>|</span>
+                              </button><span>|</span>
                                  <button type-="button" class="btn btn-info"data-toggle="modal" data-target="#myModalEdit" data-book-id="<?php echo $fetch['idTask'] ?> "><span class="glyphicon glyphicon-edit"></span></button>
+                                
                             </td>
                             <td>
                                 <div class="collapse" id="collapseExample<?php echo $count - 1 ?>">
@@ -225,6 +229,7 @@
                          echo "</div>";
                         
                          
+
                 }
             }
             ?>
@@ -235,12 +240,14 @@
 <script>
     // When the user clicks on <div>, open the popup
     $('#myModal').modal(options);
+
     function myFunction() {
         var popup = document.getElementById("myPopup");
         popup.classList.toggle("show");
     }
 </script>
 <script>
+
     $('.collapse').collapse({
         toggle: false
     });
@@ -253,8 +260,10 @@
     $('#myModalEdit').on('show.bs.modal', function(e) {
         //get data-id attribute of the clicked element
         var bookId = $(e.relatedTarget).data('book-id');
+
         //populate the textbox
         $(e.currentTarget).find('input[name="bookId"]').val(bookId);
     });
+
 
 </script>

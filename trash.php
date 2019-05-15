@@ -19,6 +19,7 @@ if (!$query->fetch_array()) {
         for ($i = 0; $i < count($checkbox); $i++) {
             $del_id = $checkbox[$i];
             mysqli_query($conn, "DELETE FROM tasks WHERE idTask='" . $del_id . "'");
+
             
     }
 }
@@ -30,7 +31,6 @@ if (!$query->fetch_array()) {
             
     }
 }
-
 
 
 
@@ -92,6 +92,7 @@ if (!$query->fetch_array()) {
                 </table>
                 <?php
                 if ($este)
+
                 {
                     echo '<button type="submit" class="btn btn-danger" name="save">Permanently delete <span class="glyphicon 
                     glyphicon-trash"></span></button>';           
@@ -100,8 +101,6 @@ if (!$query->fetch_array()) {
 <button type="submit" class="btn btn-primary" name="restore">Restore <span class="glyphicon 
                     glyphicon-refresh"></span></button>
         </form>
-
-
         </div>
     </div>
 
