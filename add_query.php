@@ -7,7 +7,9 @@
 			$deadline = $_POST['deadline'];
 			$descriere = $_POST['descriere'];
 			$userId = $_SESSION['id'];
-			$conn->query("INSERT INTO `tasks` VALUES('', '$task', '$deadline', '$descriere','Undone')");
+			$parent = $_POST['bookId'];
+			
+			$conn->query("INSERT INTO `tasks` VALUES('', '$task', '$deadline', '$descriere','Undone','$parent')");
 			$query = $conn->query("SELECT * FROM `tasks` ORDER BY idTask DESC LIMIT 1");
 			$fetch = $query->fetch_array();
 			$idTask= $fetch['idTask'];
