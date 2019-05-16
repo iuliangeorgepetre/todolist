@@ -97,14 +97,13 @@
             <!-- Modal Edit -->
  
             <form method="POST" class="form" action="edit_task.php">
-
                 <div class="modal" id="myModalEdit">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <div class="modal-dialog">
+                            <div class="modal-content">
                             <!-- Modal Header -->
                             <div class="modal-header">
-                                <h4 class="modal-title">Edit Task</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Edit Task</h4>                           
                             </div>
                             <!-- Modal body -->
                             <div class="modal-body">
@@ -114,12 +113,10 @@
                                 <label for="deadline">Edit Deadline</label>
                                 <input type="date" class="form-control" name="deadline" required>
                                 <br>
-
                                 <input type="hidden" class="form-control" name="bookId" value="">
-
+                                <br>
                                 <button class="btn btn-primary form-control" name="edit">EditTask</button>
                                 <br><br>
-                             
                             </div>
                             <!-- Modal footer -->
                             <div class="modal-footer">
@@ -163,45 +160,40 @@
                         # if($fetch[])
                         ?>
                         <tr class="text-center">
-                            <td><?php echo $count++ ?></td>
-                            <td><?php echo $fetch['name'] ?></td>
-                            <td><?php echo $fetch['deadline'] ?></td>
-                            <td><?php echo $fetch['status'] ?></td>
-                            <td colspan="3">
-                                <?php
-                                if ($fetch['status'] == "Undone") {
-                                    echo
-                                        '<a href="update_task.php?task_id=' . $fetch['idTask'] . '" class="btn btn-success" title="Complete Task"><span class="glyphicon glyphicon-check"></span></a> |';
-                                }
-                                if ($fetch['status'] == "Done") {
-                                    echo
-                                        '<a href="update_task2.php?task_id=' . $fetch['idTask'] . '" class="btn btn-primary" title="Restore Task"><span class="glyphicon 
-                                        glyphicon-refresh"></span></a> |';
-                                }
-                                ?>
-                                <a href="ToTrash.php?task_id=<?php echo $fetch['idTask'] ?>" class="btn btn-danger" title="Delete Task"><span class="glyphicon glyphicon-remove"></span></a><span>|</span>
-
-                                <button class="btn btn-primary" data-toggle="collapse"  title="About..." data-target="#collapseExample<?php echo $count - 1 ?>" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                    <span class="glyphicon glyphicon-question-sign"></span>
-                                </button><span>|</span>
-                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalSubtask" data-book-id="<?php echo $fetch['idTask'] ?> " title="Add Subtask">
-                                    <span class="glyphicon glyphicon-plus-sign"></span>
-
-                              </button><span>|</span>
-
-                                 <button type-="button" class="btn btn-info"data-toggle="modal" data-target="#myModalEdit" data-book-id="<?php echo $fetch['idTask'] ?> " title="Edit Task"><span class="glyphicon glyphicon-edit"></span></button>
-
-                                
-                            </td>
-                            <td>
-                                <div class="collapse" id="collapseExample<?php echo $count - 1 ?>">
-                                    <div class="text-center">
-                                        <?php echo $fetch['descriere']; ?>
-                                    </div>
+                    
+                    <td>
+                        <?php
+                        if ($fetch['status'] != "Done") {
+                        echo
+                        '<a href="update_task.php?task_id=' . $fetch['idTask'] . '" class="btn btn-outline-success"><span class="glyphicon glyphicon-ok"></span></a>';
+                        }
+                        ?>
+                        <td><?php echo $fetch['name'] ?></td>
+                        <td><?php echo $fetch['deadline'] ?></td>
+                        <td><?php echo $fetch['status'] ?></td>
+                        <td><a href="ToTrash.php?task_id=<?php echo $fetch['idTask'] ?>" class="btn btn-outline-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+                        <!-- Default dropright button -->
+                        
+                    </td><td>
+                    <div class="dropdown">
+                        <div class="btn-group dropright">
+                            <button class="btn btn-primary dropdown-toggle " type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-option-vertical"></span></button>
+                            <ul class="dropdown-menu">
+                                <li> <a type="button" class="dropdown-item" data-toggle="collapse" data-target="#collapseExample<?php echo $count - 1 ?>" aria-expanded="false" aria-controls="collapseExample"><span class="glyphicon glyphicon-question-sign"></span> Details</a></li>
+                                <li><a type="button" class="dropdown-item" data-toggle="modal" data-target="#myModalSubtask" data-book-id="<?php echo $fetch['idTask'] ?> "><span class="glyphicon glyphicon-plus-sign"></span> Add SubTask</a></li>
+                                <li><a type-="button" class="dropdown-item" data-toggle="modal" data-target="#myModalEdit" data-book-id="<?php echo $fetch['idTask'] ?> "><span class="glyphicon glyphicon-edit"></span> Edit</a></li>
+                                </ul>
+                            </div>
+                            
+                        </td>
+                        <td>
+                            <div class="collapse" id="collapseExample<?php echo $count - 1 ?>">
+                                <div class="text-center">
+                                    <?php echo $fetch['descriere']; ?>
                                 </div>
-                            </td>
-                        </tr>
-
+                            </div>
+                        </td>
+                    </tr>
                         <?php
                             $query = $conn->query("SELECT * FROM `tasks` WHERE parent_ID = $idTask");
                             if($fetch = $query->fetch_array()){
