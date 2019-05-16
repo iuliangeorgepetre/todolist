@@ -11,7 +11,11 @@ $query = $conn->query("SELECT * FROM `tasks` WHERE status = 'inTrash' ");
 
 
 if (!$query->fetch_array()) {
-    echo 'No items in the trash';
+
+    echo '<div class="text-center">
+             <h1 style="margin-top: 40vh;">No items in the trash...</h1>
+         </div>';
+
 } else {
 
     if (isset($_POST['save'])) {
@@ -22,6 +26,9 @@ if (!$query->fetch_array()) {
 
             
     }
+
+    header("Refresh:0");
+
 }
      if (isset($_POST['restore'])) {
         $checkbox = $_POST['check'];
@@ -95,11 +102,15 @@ if (!$query->fetch_array()) {
 
                 {
                     echo '<button type="submit" class="btn btn-danger" name="save">Permanently delete <span class="glyphicon 
-                    glyphicon-trash"></span></button>';           
+
+                    glyphicon-trash"></span></button>';   
+                    echo '<br><br>';
+                    echo '<button type="submit" class="btn btn-primary" name="restore">Restore <span class="glyphicon 
+                    glyphicon-refresh"></span></button>';    
                 }?>
-</br></br>
-<button type="submit" class="btn btn-primary" name="restore">Restore <span class="glyphicon 
-                    glyphicon-refresh"></span></button>
+
+
+
         </form>
         </div>
     </div>
