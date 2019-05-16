@@ -114,7 +114,9 @@
                                 <label for="deadline">Edit Deadline</label>
                                 <input type="date" class="form-control" name="deadline" required>
                                 <br>
+
                                 <input type="hidden" class="form-control" name="bookId" value="">
+
                                 <button class="btn btn-primary form-control" name="edit">EditTask</button>
                                 <br><br>
                              
@@ -186,7 +188,9 @@
                                     <span class="glyphicon glyphicon-plus-sign"></span>
 
                               </button><span>|</span>
+
                                  <button type-="button" class="btn btn-info"data-toggle="modal" data-target="#myModalEdit" data-book-id="<?php echo $fetch['idTask'] ?> " title="Edit Task"><span class="glyphicon glyphicon-edit"></span></button>
+
                                 
                             </td>
                             <td>

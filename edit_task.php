@@ -13,6 +13,7 @@
 			echo $deadline;
 			echo $task_id;
 			header('location:index.php');
+
 		}
 	}
 ?>
