@@ -26,16 +26,13 @@ require "includes/dbh.inc.php";
   <header class="d-flex">
     <nav class="nav-header-main">
       <a class="header-logo" href="index.php">
-        <img src="img/logo.png" alt="mmtuts logo">
+        <img src="img/logo.png" alt=" logo">
       </a>
       <ul>
-        <li><a href="index.php">Home</a></li>
-        
-        <li><a href="#">About me</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="index.php">Tasks</a></li>
         <?php 
           if(isset($_SESSION['id'])){
-            echo '<li><a href="proiecte.php">Proiecte</a></li>';
+            echo '<li><a href="proiecte.php">Projects</a></li>';
             echo '<li><a href="trash.php">Trash</a></li>';
           }
         ?>
@@ -60,7 +57,7 @@ require "includes/dbh.inc.php";
           </form>
           <a href="signup.php" class="header-signup">Signup</a>';
       } else if (isset($_SESSION['id'])) {
-        echo '<p class="login-status">Logged In as ' . $_SESSION['uid'] . '</p>';
+        echo '<p class="login-status" style="font-size:20px; margin-top:5px;">Logged In as ' . $_SESSION['uid'] . '</p>';
         echo '<form action="includes/logout.inc.php" method="post">
             <button type="submit" name="login-submit">Logout</button>
           </form>';

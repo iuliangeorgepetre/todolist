@@ -6,7 +6,7 @@
 		$status = $_GET['status'];
 		echo $status;
 		
-			$conn->query("UPDATE `tasks` SET `status` = 'Done' WHERE `idTask` = $task_id ") or die;
+			$conn->query("UPDATE `tasks` SET `status` = 'Undone' WHERE `idTask` = $task_id ") or die;
 			header("location: index.php");
 		
 		

@@ -1,3 +1,4 @@
+
 <head>
 
 
@@ -44,7 +45,7 @@
                                 <label for="deadline">Deadline</label>
                                 <input type="date" class="form-control" name="deadline" required>
 
-                                <input type="text" class="form-control" name="bookId" value="0">
+                                <input type="hidden" class="form-control" name="bookId" value="0">
 
                                 <br>
                                 <button class="btn btn-primary form-control" name="add">Add Task</button>
@@ -93,12 +94,39 @@
                 </div>
             </form>
 
-            <!-- modal test -->
+            <!-- Modal Edit -->
+ 
+            <form method="POST" class="form" action="edit_task.php">
 
-
-
-            <!-- end test -->
-
+                <div class="modal" id="myModalEdit">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Edit Task</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <label for="task">Edit Task</label>
+                                <input type="text" class="form-control" name="task" required>
+                                <br>
+                                <label for="deadline">Edit Deadline</label>
+                                <input type="date" class="form-control" name="deadline" required>
+                                <br>
+                                <input type="hidden" class="form-control" name="bookId" value="">
+                                <button class="btn btn-primary form-control" name="edit">EditTask</button>
+                                <br><br>
+                             
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
 
         </div>
         <br /><br /><br />
@@ -129,9 +157,6 @@
 
                     $query = $conn->query("SELECT * FROM `tasks` WHERE idTask = $idTask AND status !='inTrash' AND parent_ID = '0'");
 
-
-
-
                     while ($fetch = $query->fetch_array()) {
                         # if($fetch[])
                         ?>
@@ -142,20 +167,27 @@
                             <td><?php echo $fetch['status'] ?></td>
                             <td colspan="3">
                                 <?php
-                                if ($fetch['status'] != "Done") {
+                                if ($fetch['status'] == "Undone") {
                                     echo
-                                        '<a href="update_task.php?task_id=' . $fetch['idTask'] . '" class="btn btn-success"><span class="glyphicon glyphicon-check"></span></a> |';
+                                        '<a href="update_task.php?task_id=' . $fetch['idTask'] . '" class="btn btn-success" title="Complete Task"><span class="glyphicon glyphicon-check"></span></a> |';
+                                }
+                                if ($fetch['status'] == "Done") {
+                                    echo
+                                        '<a href="update_task2.php?task_id=' . $fetch['idTask'] . '" class="btn btn-primary" title="Restore Task"><span class="glyphicon 
+                                        glyphicon-refresh"></span></a> |';
                                 }
                                 ?>
-                                <a href="ToTrash.php?task_id=<?php echo $fetch['idTask'] ?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a><span>|</span>
+                                <a href="ToTrash.php?task_id=<?php echo $fetch['idTask'] ?>" class="btn btn-danger" title="Delete Task"><span class="glyphicon glyphicon-remove"></span></a><span>|</span>
 
-                                <button class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample<?php echo $count - 1 ?>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                <button class="btn btn-primary" data-toggle="collapse"  title="About..." data-target="#collapseExample<?php echo $count - 1 ?>" role="button" aria-expanded="false" aria-controls="collapseExample">
                                     <span class="glyphicon glyphicon-question-sign"></span>
                                 </button><span>|</span>
-                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalSubtask" data-book-id="<?php echo $fetch['idTask'] ?> ">
+                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalSubtask" data-book-id="<?php echo $fetch['idTask'] ?> " title="Add Subtask">
                                     <span class="glyphicon glyphicon-plus-sign"></span>
 
-                                </button>
+                              </button><span>|</span>
+                                 <button type-="button" class="btn btn-info"data-toggle="modal" data-target="#myModalEdit" data-book-id="<?php echo $fetch['idTask'] ?> " title="Edit Task"><span class="glyphicon glyphicon-edit"></span></button>
+                                
                             </td>
                             <td>
                                 <div class="collapse" id="collapseExample<?php echo $count - 1 ?>">
@@ -172,17 +204,8 @@
                                 $are=1;
                                 echo'
                                 <div>
-                                <tr>
-                                    <td> </td><td> </td>
-                                    <td style = "font-weight:bold; background-color:#EA2027; color:white;"> Subtasks:</td>
-                                    
-                                </tr>
-                                <tr style="">
-                                <td> </td><td> </td>
-                                <td style = "font-weight:bold; background-color:#EA2027; color:white;"> Nume: </td>
-                                <td style = "font-weight:bold; background-color:#EA2027; color:white;"> Deadline: </td>
-                                <td style = "font-weight:bold; background-color:#EA2027; color:white;"> Status: </td>
-                                </tr>
+                               
+                                
                                 ';
                             }
                             $query = $conn->query("SELECT * FROM `tasks` WHERE parent_ID = $idTask");
@@ -190,11 +213,24 @@
                         ?>
                         
                         <tr class="text-center">
-                            <td></td>
+                            
                             <td> </td>
-                            <td><?php echo $fetch['name'] ?></td>
-                            <td><?php echo $fetch['deadline'] ?></td>
-                            <td><?php echo $fetch['status'] ?></td>
+                            <td style = "font-weight:bold; background-color:#EA2027; color:white;"><?php echo $fetch['name'] ?></td>
+                            <td style = "font-weight:bold; background-color:#EA2027; color:white;"><?php echo $fetch['deadline'] ?></td>
+                            <td style = "font-weight:bold; background-color:#EA2027; color:white;"><?php echo $fetch['status'] ?></td>
+                            <td>
+                            <?php
+                                if ($fetch['status'] == "Undone") {
+                                    echo
+                                        '<a href="update_task.php?task_id=' . $fetch['idTask'] . '" class="btn btn-success" title="Complete Task"><span class="glyphicon glyphicon-check"></span></a> ';
+                                }
+                                if ($fetch['status'] == "Done") {
+                                    echo
+                                        '<a href="update_task2.php?task_id=' . $fetch['idTask'] . '" class="btn btn-primary" title="Restore Task"><span class="glyphicon 
+                                        glyphicon-refresh"></span></a> ';
+                                }
+                                ?>
+                            </td>
 
                         </tr>
                     <?php
@@ -224,14 +260,21 @@
     $('.collapse').collapse({
         toggle: false
     });
-
     $('#myModalSubtask').on('show.bs.modal', function(e) {
-
+        //get data-id attribute of the clicked element
+        var bookId = $(e.relatedTarget).data('book-id');
+        //populate the textbox
+        $(e.currentTarget).find('input[name="bookId"]').val(bookId);
+    });
+    $('#myModalEdit').on('show.bs.modal', function(e) {
         //get data-id attribute of the clicked element
         var bookId = $(e.relatedTarget).data('book-id');
 
         //populate the textbox
         $(e.currentTarget).find('input[name="bookId"]').val(bookId);
+    });
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
     });
 
 </script>
