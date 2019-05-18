@@ -20,6 +20,7 @@ require "header.php";
           <h3 class="text-primary">Projects</h3>
           <hr style="border-top:1px dotted #ccc;">
           <button type="button" class="btn-lg btn-primary btn" data-toggle="modal" data-target="#myModal">Add Project </button>
+         
           <br>
           <!-- The Modal Project -->
           <form method="POST" class="form" action="add_project.php">

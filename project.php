@@ -25,113 +25,18 @@ $fetch = $query->fetch_array();
             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
                 Add Task
             </button>
+            <?php
+            if($fetch['uid_admin'] == $_SESSION['id']){
+                echo '<button type="button" class="btn-lg btn-primary btn" data-toggle="modal" data-target="#myModalUser">Add User </button>';
+                
+            }
+            ?>
+            
 
 
-            <!-- The Modal Task -->
-            <form method="POST" class="form" action="add_task_in_project.php">
-
-                <div class="modal" id="myModal">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                                <h4 class="modal-title">Add Task</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
-                            <!-- Modal body -->
-                            <div class="modal-body">
-                                <label for="task">Task</label>
-                                <input type="text" class="form-control" name="task" required>
-                                <br>
-                                <label for="descriere">Description</label>
-                                <input type="text" class="form-control" name="descriere" required>
-                                <br>
-                                <label for="deadline">Deadline</label>
-                                <input type="date" class="form-control" name="deadline" required>
-
-                                <input type="hidden" class="form-control" name="bookId" value="0">
-                                <input type="hidden" class="form-control"  name="projectId" value="<?php echo $project_id ?>">
-
-                                <br>
-                                <button class="btn btn-primary form-control" name="add">Add Task</button>
-                                <br><br>
-                            </div>
-                            <!-- Modal footer -->
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-
-            <!-- The Modal Subtask -->
-            <form method="POST" class="form" action="add_query.php">
-                <div class="modal" id="myModalSubtask">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                                <h4 class="modal-title">Add SubTask</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
-                            <!-- Modal body -->
-                            <div class="modal-body">
-                                <label for="task">SubTask</label>
-                                <input type="text" class="form-control" name="task" required>
-                                <br>
-                                <label for="descriere">Description</label>
-                                <input type="text" class="form-control" name="descriere" required>
-                                <br>
-                                <label for="deadline">Deadline</label>
-                                <input type="date" class="form-control" name="deadline" required>
-                                <br>
-                                <input type="hidden" class="form-control" name="bookId" value="">
-                                <button class="btn btn-primary form-control" name="add">Add SubTask</button>
-                                <br><br>
-                            </div>
-                            <!-- Modal footer -->
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-
-            <!-- Modal Edit -->
-
-            <form method="POST" class="form" action="edit_task.php">
-
-                <div class="modal" id="myModalEdit">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                                <h4 class="modal-title">Edit Task</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
-                            <!-- Modal body -->
-                            <div class="modal-body">
-                                <label for="task">Edit Task</label>
-                                <input type="text" class="form-control" name="task" required>
-                                <br>
-                                <label for="deadline">Edit Deadline</label>
-                                <input type="date" class="form-control" name="deadline" required>
-                                <br>
-                                <input type="hidden" class="form-control" name="bookId" value="">
-                                <button class="btn btn-primary form-control" name="edit">EditTask</button>
-                                <br><br>
-
-                            </div>
-                            <!-- Modal footer -->
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
+            <?php
+                require "modals.php";
+            ?>
 
         </div>
         <div class="col-md-2"></div>
@@ -188,7 +93,7 @@ $fetch = $query->fetch_array();
                                 <button class="btn btn-primary" data-toggle="collapse" title="About..." data-target="#collapseExample<?php echo $count - 1 ?>" role="button" aria-expanded="false" aria-controls="collapseExample">
                                     <span class="glyphicon glyphicon-question-sign"></span>
                                 </button><span>|</span>
-                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalSubtask" data-book-id="<?php echo $fetch['idTask'] ?> " title="Add Subtask">
+                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalSubtask" data-book-id="<?php echo $fetch['idTask']?> " title="Add Subtask">
                                     <span class="glyphicon glyphicon-plus-sign"></span>
 
                                 </button><span>|</span>
