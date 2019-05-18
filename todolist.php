@@ -97,14 +97,13 @@
             <!-- Modal Edit -->
  
             <form method="POST" class="form" action="edit_task.php">
-
                 <div class="modal" id="myModalEdit">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <div class="modal-dialog">
+                            <div class="modal-content">
                             <!-- Modal Header -->
                             <div class="modal-header">
-                                <h4 class="modal-title">Edit Task</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Edit Task</h4>                           
                             </div>
                             <!-- Modal body -->
                             <div class="modal-body">
@@ -115,9 +114,9 @@
                                 <input type="date" class="form-control" name="deadline" required>
                                 <br>
                                 <input type="hidden" class="form-control" name="bookId" value="">
+
                                 <button class="btn btn-primary form-control" name="edit">EditTask</button>
                                 <br><br>
-                             
                             </div>
                             <!-- Modal footer -->
                             <div class="modal-footer">
@@ -162,6 +161,7 @@
                         # if($fetch[])
                         ?>
                         <tr class="text-center">
+
                             <td><?php echo $count++ ?></td>
                             <td><?php echo $fetch['name'] ?></td>
                             <td><?php echo $fetch['deadline'] ?></td>
@@ -195,10 +195,11 @@
                                     <div class="text-center">
                                         <?php echo $fetch['descriere']; ?>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
 
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
                         <?php
                             $query = $conn->query("SELECT * FROM `tasks` WHERE parent_ID = $idTask");
                             if($fetch = $query->fetch_array()){
