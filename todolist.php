@@ -18,7 +18,7 @@
         <div class="col-md-2"></div>
         <div class="col-md-8 center">
 
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
                 Add Task
             </button>
 
@@ -114,9 +114,7 @@
                                 <label for="deadline">Edit Deadline</label>
                                 <input type="date" class="form-control" name="deadline" required>
                                 <br>
-
                                 <input type="hidden" class="form-control" name="bookId" value="">
-
                                 <button class="btn btn-primary form-control" name="edit">EditTask</button>
                                 <br><br>
                              
@@ -131,6 +129,7 @@
             </form>
 
         </div>
+        <div class="col-md-2"></div>
         <br /><br /><br />
         <table class="table table-hover">
             <thead class="text-center">
@@ -188,9 +187,7 @@
                                     <span class="glyphicon glyphicon-plus-sign"></span>
 
                               </button><span>|</span>
-
                                  <button type-="button" class="btn btn-info"data-toggle="modal" data-target="#myModalEdit" data-book-id="<?php echo $fetch['idTask'] ?> " title="Edit Task"><span class="glyphicon glyphicon-edit"></span></button>
-
                                 
                             </td>
                             <td>
