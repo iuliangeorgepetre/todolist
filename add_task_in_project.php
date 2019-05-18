@@ -16,7 +16,8 @@
 			$idTask= $fetch['idTask'];
             $conn->query("INSERT INTO `user_task_leg` VALUES('', '$userId', '$idTask')");
             $conn->query("INSERT INTO `project_task_leg` VALUES('', '$idTask', '$idProject')");
-			header('location:index.php');
+
+			header('location:project.php?project_id=' . $_GET['project_id']);
 		}
 	}
 ?>
