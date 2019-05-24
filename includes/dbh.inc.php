@@ -2,7 +2,7 @@
 $dBServername = "localhost";
 $dBUsername = "root";
 $dBPassword = "";
-$dBName = "loginsystemtut";
+$dBName = "ionut_licenta";
 
 // Creeaza conexiunea
 $conn = mysqli_connect($dBServername, $dBUsername, $dBPassword, $dBName);
