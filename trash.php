@@ -40,6 +40,9 @@ if (!$query->fetch_array()) {
 
     $result = mysqli_query($conn, "SELECT * FROM tasks WHERE status = 'inTrash'");
     ?>
+    <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
+    </head>
     <br>
     <div class="col-md-3"></div>
     <div class="col-md-6 well">

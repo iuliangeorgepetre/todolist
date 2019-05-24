@@ -244,3 +244,31 @@ h1 {
   font-family: arial;
   color: #111;
 }
+.accordion {
+  float:left;
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width:100%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.active, .accordion:hover {
+  background-color: #ccc; 
+  border-style: none !important;
+}
+
+.panel {
+  padding: 0 18px;
+  width: 100%;
+  margin-left:0px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+}
+

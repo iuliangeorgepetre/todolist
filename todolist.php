@@ -1,5 +1,6 @@
 <head>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
 </head>
 <body>
     <div class="col-md-3"></div>
@@ -9,7 +10,7 @@
         <div class="col-md-2"></div>
         <div class="col-md-8 center">
             
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+            <button type="button" class="btn btn-primary btn-lg btn-lg btn-lg btn-lg" data-toggle="modal" data-target="#myModal">
             Add Task
             </button>
             <!-- The Modal Task -->
@@ -34,7 +35,7 @@
                                 <input type="date" class="form-control" name="deadline" required>
                                 <input type="hidden" class="form-control" name="bookId" value="0">
                                 <br>
-                                <button class="btn btn-primary form-control" name="add">Add Task</button>
+                                <button class="btn btn-primary btn-lg form-control" name="add">Add Task</button>
                                 <br><br>
                             </div>
                             <!-- Modal footer -->
@@ -67,7 +68,7 @@
                                 <input type="date" class="form-control" name="deadline" required>
                                 <br>
                                 <input type="hidden" class="form-control" name="bookId" value="">
-                                <button class="btn btn-primary form-control" name="add">Add SubTask</button>
+                                <button class="btn btn-primary btn-lg form-control" name="add">Add SubTask</button>
                                 <br><br>
                             </div>
                             <!-- Modal footer -->
@@ -98,7 +99,7 @@
                                 <input type="date" class="form-control" name="deadline" required>
                                 <br>
                                 <input type="hidden" class="form-control" name="bookId" value="">
-                                <button class="btn btn-primary form-control" name="edit">EditTask</button>
+                                <button class="btn btn-primary btn-lg form-control" name="edit">EditTask</button>
                                 <br><br>
                                 
                             </div>
@@ -114,11 +115,11 @@
         <br /><br /><br />
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
-                    <div class="col-md-8">
-                        <h4>
-                        Task
-                        </h4>
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <h3>
+                        Tasks
+                        </h3>
                     </div>
                 </div>
             </div>
@@ -139,17 +140,17 @@
                 <?php
                 if ($fetch['status'] == "Undone") {
                 echo
-                '<a href="update_task.php?task_id=' . $fetch['idTask'] . '" class="btn btnoutline-success" title="Complete Task"><span class="glyphicon glyphicon-ok"></span></a> ';
+                '<a href="update_task.php?task_id=' . $fetch['idTask'] . '" class="btn btnoutline-success" title="Complete Task" style="margin-top:50%;"><span class="glyphicon glyphicon-ok"></span></a> ';
                 }
                 if ($fetch['status'] == "Done") {
                 echo
-                '<a href="update_task2.php?task_id=' . $fetch['idTask'] . '" class="btn btn-outline-primary" title="Restore Task"><span class="glyphicon
+                '<a href="update_task2.php?task_id=' . $fetch['idTask'] . '" class="btn btn-outline-primary" title="Restore Task" style="margin-top:50%;"><span class="glyphicon
                 glyphicon-refresh"></span></a> ';
                 }
                 ?>
             </div>
             <div class="col-md-8">
-                <button id="wrap"class="accordion"><?php echo $fetch['name'] ?></button>
+                <button id="wrap" class="accordion"><?php echo $fetch['name'] ?></button>
                 <div class="panel">
                     <table class="table">
                         <thead>
@@ -191,11 +192,11 @@
                                             <?php
                                             if ($fetch2['status'] == "Undone") {
                                             echo
-                                            '<a href="update_task.php?task_id=' . $fetch2['idTask'] . '" class="btn btnoutline-success" title="Complete Task"><span class="glyphicon glyphicon-ok"></span></a> ';
+                                            '<a href="update_task.php?task_id=' . $fetch2['idTask'] . '" class="btn btnoutline-success" title="Complete Task" ><span class="glyphicon glyphicon-ok"></span></a> ';
                                             }
                                             if ($fetch2['status'] == "Done") {
                                             echo
-                                            '<a href="update_task2.php?task_id=' . $fetch2['idTask'] . '" class="btn btn-outline-primary" title="Restore Task"><span class="glyphicon
+                                            '<a href="update_task2.php?task_id=' . $fetch2['idTask'] . '" class="btn btn-outline-primary" title="Restore Task" ><span class="glyphicon
                                             glyphicon-refresh"></span></a> ';
                                             }
                                             ?>
@@ -207,10 +208,10 @@
                                             
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <a href="ToTrash.php?task_id=<?php echo $fetch2['idTask']; ?>" class="btn btn-outline-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                                                    <a href="ToTrash.php?task_id=<?php echo $fetch2['idTask']; ?>" class="btn btn-outline-danger" > <span class="glyphicon glyphicon-remove" ></span></a>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <a type-="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModalEdit" data-book-id="<?php echo $fetch2['idTask']; ?> "><span class="glyphicon glyphicon-edit"></span></a>
+                                                    <a type-="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModalEdit" data-book-id="<?php echo $fetch2['idTask']; ?> " ><span class="glyphicon glyphicon-edit"></span></a>
                                                 </div>
                                             </div>
                                         </td>
@@ -231,7 +232,7 @@
             <div class="col-md-2">
                 <div class="dropdown">
                     <div class="btn-group dropright">
-                        <button class="btn btn-primary dropdown-toggle " type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-option-vertical"></span></button>
+                        <button class="btn btn-primary btn-lg dropdown-toggle " type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-option-vertical"></span></button>
                         <ul class="dropdown-menu">
                             <li><a type="button" class="dropdown-item" data-toggle="modal" data-target="#myModalSubtask" data-book-id="<?php echo $fetch['idTask'] ?> "><span class="glyphicon glyphicon-plus-sign"></span> Add SubTask</a></li>
                             <li><a type-="button" class="dropdown-item" data-toggle="modal" data-target="#myModalEdit" data-book-id="<?php echo $fetch['idTask'] ?> "><span class="glyphicon glyphicon-edit"></span> Edit</a></li>
@@ -240,10 +241,12 @@
                 </div>
             </div>
         </div>
+    
         <?php }
         }
         ?>
-        
+        </div>
+    </div>
         
     </body>
     <script>

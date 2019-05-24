@@ -4,6 +4,7 @@ require "header.php";
 ?>
 
 <head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 
@@ -20,7 +21,7 @@ require "header.php";
           <h3 class="text-primary">Projects</h3>
           <hr style="border-top:1px dotted #ccc;">
           <button type="button" class="btn-lg btn-primary btn" data-toggle="modal" data-target="#myModal">Add Project </button>
-         
+
           <br>
           <!-- The Modal Project -->
           <form method="POST" class="form" action="add_project.php">
@@ -61,10 +62,11 @@ require "header.php";
         <table class="table table-hover">
           <thead class="">
             <tr class="text-center">
-              <th scope="col text-center">#</th>
-              <th scope="col text-center">Task</th>
-              <th scope="col text-center">Deadline</th>
-              <th scope="col text-center  ">Status</th>
+              <th scope="col ">#</th>
+              <th scope="col ">Task</th>
+              <th scope="col ">Deadline</th>
+              <th scope="col">Status</th>
+              <th scope="col">Action</th>
 
             </tr>
           </thead>
@@ -83,7 +85,7 @@ require "header.php";
               $idProject = $iadate['idProject'];
 
 
-              $query = $conn->query("SELECT * FROM `projects` WHERE idProiect = $idProject");
+              $query = $conn->query("SELECT * FROM `projects` WHERE idProiect = $idProject AND status !='inTrash'");
 
               while ($fetch = $query->fetch_array()) {
                 # if($fetch[])
@@ -91,10 +93,22 @@ require "header.php";
                 <tr class="text-center">
                   <td><?php echo $count++ ?></td>
                   <td><?php echo
-                        '<a href="project.php?project_id=' . $fetch['idProiect'] . '" class="btn btn-success btn-block" title=" Task">'.$fetch['name'].'</a> ';  ?></td>
+                        '<a href="project.php?project_id=' . $fetch['idProiect'] . '" class="btn btn-success btn-block" title=" Task">' . $fetch['name'] . '</a> ';  ?></td>
                   <td><?php echo $fetch['deadline'] ?></td>
                   <td><?php echo $fetch['status'] ?></td>
-
+                  <td><a href="ToTrash.php?project_id=<?php echo $fetch['idProiect'] ?>" class="btn btn-outline-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+                  <td><?php
+                      if ($fetch['status'] == "Undone") {
+                        echo
+                          '<a href="update_task.php?project_id=' . $fetch['idProiect'] . '" class="btn btnoutline-success" title="Complete Project" ><span class="glyphicon glyphicon-ok"></span></a> ';
+                      }
+                      if ($fetch['status'] == "Done") {
+                        echo
+                          '<a href="update_task2.php?project_id=' . $fetch['idProiect'] . '" class="btn btn-outline-primary" title="Restore Task" ><span class="glyphicon
+                                            glyphicon-refresh"></span></a> ';
+                      }
+                      ?>
+                  </td>
                 </tr>
 
 
